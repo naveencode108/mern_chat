@@ -35,6 +35,11 @@ const ChatContainer = () => {
     <div className="flex flex-1 flex-col overflow-auto">
       <ChatHeader />
 
+     {loading?
+       <div className=" w-full h-screen flex justify-center">
+       <span className="loading loading-dots"></span>
+     </div>
+     :
       <div className="flex-1 overflow-y-auto p-4 space-y">
         {messages.map((item) => {
           return (
@@ -98,6 +103,8 @@ const ChatContainer = () => {
           );
         })}
       </div>
+     }
+
 
       <MessageInput />
     </div>

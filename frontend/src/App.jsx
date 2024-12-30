@@ -1,14 +1,17 @@
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Setting from "./components/Setting";
-import Profile from "./components/Profile";
-import Signup from "./components/Signup";
-import { Toaster, toast } from "react-hot-toast";
+// import Navbar from "./components/Navbar";
+// import Home from "./components/Home";
+// import Login from "./components/Login";
+// import Profile from "./components/Profile";
+// import Signup from "./components/Signup";
+import React, { Suspense } from "react";
+const Navbar=React.lazy(()=>import('./components/Navbar'));
+const Home=React.lazy(()=>import('./components/Home'));
+const Login=React.lazy(()=>import('./components/Login'));
+const Profile=React.lazy(()=>import('./components/Profile'));
+const Signup=React.lazy(()=>import('./components/Signup'));
+import { Toaster } from "react-hot-toast";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { isAuthContext, useIsAuth } from "./utils/IsAuth";
-import { useContext, useEffect } from "react";
-import { io } from 'socket.io-client';
+import {useIsAuth } from "./utils/IsAuth";
 
 const App = () => {
   const { auth } = useIsAuth();
@@ -17,6 +20,11 @@ const App = () => {
     <>
       <Toaster position="bottom-right" />
 
+     <Suspense fallback={<div className="w-full h-screen flex justify-center items-center">
+         <span className="loading loading-dots"></span>
+     </div>}>
+
+        
       <div>
         <Navbar />
 
@@ -33,13 +41,15 @@ const App = () => {
             path="/login"
             element={auth==null ? <Login /> : <Navigate to="/" />}
           />
-          {/* <Route path="/setting" element={<Setting />} /> */}
           <Route
             path="/profile"
             element={auth!=null? <Profile /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>
+
+     </Suspense>
+
     </>
   );
 };

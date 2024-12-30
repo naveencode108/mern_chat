@@ -46,13 +46,12 @@ export const ChatProvider = ({ children }) => {
       });
 
       if (res.data.success) {
+        setLoading(false);
         setMessages(res.data.message);
       }
     } catch (er) {
       toast.error(er.message);
       console.log(er.message);
-    } finally {
-      setLoading(false);
     }
   };
 
