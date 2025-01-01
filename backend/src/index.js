@@ -3,6 +3,7 @@ import 'dotenv/config'
 import express from 'express'
 import authRoutes from './routes/auth.route.js'
 import messagesRoutes from './routes/message.route.js'
+import path from 'path';
 
 import { connectDb } from './config/db.js';
 import cloudinary from './config/cloudinary.js';
@@ -41,6 +42,14 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messagesRoutes);
+
+if(process.env.NODE_ENV==='production'){
+  app.use(express.static(path.join(__dirname,'../frontend/dist')));
+
+  app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../frontend','dist','index.html'));
+  });
+}
 
 const userSocketMap={};
 

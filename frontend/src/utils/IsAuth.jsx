@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import { useChat } from "./Chatcont";
 
+const base_url=import.meta.env.MODE==='development'?'http://localhost:3000':''
+
 export const isAuthContext = createContext();
 
 export const Provider = ({ children }) => {
@@ -54,7 +56,7 @@ export const Provider = ({ children }) => {
 
   const connectSocket = (val) => {
     if (!val) return;
-    const socket = io("http://localhost:3000", {
+    const socket = io(base_url, {
       query: {
         userId: val
       }
