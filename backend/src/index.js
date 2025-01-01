@@ -14,10 +14,12 @@ import http from 'http';
 
 import path from 'path';
 
-import { fileURLToPath } from 'url';
+import {__dirname} from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import { fileURLToPath } from 'url';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 
 const app = express();
@@ -43,7 +45,6 @@ app.use(cookieParser());
 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-
 
 
 
