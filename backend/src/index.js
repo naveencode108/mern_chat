@@ -12,7 +12,7 @@ import cors from 'cors';
 import { Server } from 'socket.io';
 import http from 'http';
 
-const path=require('path');
+import path from 'path';
 
 
 const app = express();
