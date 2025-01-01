@@ -3,7 +3,7 @@ import 'dotenv/config'
 import express from 'express'
 import authRoutes from './routes/auth.route.js'
 import messagesRoutes from './routes/message.route.js'
-import path from 'path';
+
 
 import { connectDb } from './config/db.js';
 import cloudinary from './config/cloudinary.js';
@@ -11,6 +11,8 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors';
 import { Server } from 'socket.io';
 import http from 'http';
+
+const path=require('path');
 
 
 const app = express();
