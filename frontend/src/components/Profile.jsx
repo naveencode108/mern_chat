@@ -79,7 +79,7 @@ const Profile = () => {
                 src={
                   user.length > 0 && user[0].profilePic
                     ? user[0].profilePic
-                    : ""
+                    : "https://imgs.search.brave.com/4KZYIoORrEk3lsmtCvb5Vd6IcIfyGmibtiB0H6ZZo-o/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzExLzU0LzMz/LzM2MF9GXzgxMTU0/MzMzMF9LZk5ZdWtw/RFVRZG1YSUt6Y005/Z2tLOU12dHdPTzhC/ai5qcGc"
                 }
                 alt="User Profile"
                 className="h-32 w-32 rounded-full object-cover border-2  border-white shadow-md"

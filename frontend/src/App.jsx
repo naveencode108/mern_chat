@@ -1,8 +1,3 @@
-// import Navbar from "./components/Navbar";
-// import Home from "./components/Home";
-// import Login from "./components/Login";
-// import Profile from "./components/Profile";
-// import Signup from "./components/Signup";
 import React, { Suspense } from "react";
 const Navbar=React.lazy(()=>import('./components/Navbar'));
 const Home=React.lazy(()=>import('./components/Home'));

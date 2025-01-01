@@ -36,7 +36,7 @@ const Login = () => {
       );
       if (res.data.success) {
         toast.success("Welcome");
-        sessionStorage.setItem("login_token", res.data.message);
+        // sessionStorage.setItem("login_token", res.data.message);
         setAuth(res.data.message);
         connectSocket(res.data.message._id);
         navigate("/");

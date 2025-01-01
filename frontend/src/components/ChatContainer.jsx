@@ -47,15 +47,12 @@ const ChatContainer = () => {
               key={item._id}
               className={`chat ${
                 item.receiverId === selectedUser._id ? "chat-end" : "chat-start"
-                // item.senderId._id === auth ? "chat-start" : "chat-end"
               }`}
             >
               <div className="chat-image avatar">
                 <div className="size-10 rounded-full border">
                   <img
                     src={
-                      // item.senderId._id == selectedUser._id
-                      // item.senderId._id === auth._id
                       item.receiverId === auth._id
                          ? selectedUser.profilePic
                         ||"https://imgs.search.brave.com/4KZYIoORrEk3lsmtCvb5Vd6IcIfyGmibtiB0H6ZZo-o/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA4LzExLzU0LzMz/LzM2MF9GXzgxMTU0/MzMzMF9LZk5ZdWtw/RFVRZG1YSUt6Y005/Z2tLOU12dHdPTzhC/ai5qcGc"
