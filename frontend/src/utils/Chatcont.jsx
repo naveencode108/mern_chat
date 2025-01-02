@@ -28,7 +28,6 @@ export const ChatProvider = ({ children }) => {
       if (res.data.success) {
         setUser(res.data.message);
       }
-      // console.log(res);
     } catch (er) {
       console.log(er.message);
       toast.error(er.message);
