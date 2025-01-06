@@ -11,6 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+  const [loading,setLoading]=useState(false);
   const navigate = useNavigate();
    
   const {setAuth,connectSocket} = useIsAuth();
@@ -29,14 +30,15 @@ const Login = () => {
     }
 
     try {
+      setLoading(true);
       let res = await axios.post(
         "/api/auth/login",
         { email, password },
         {withCredentials:true}
       );
       if (res.data.success) {
+        setLoading(false);
         toast.success("Welcome");
-        // sessionStorage.setItem("login_token", res.data.message);
         setAuth(res.data.message);
         connectSocket(res.data.message._id);
         navigate("/");
@@ -47,6 +49,9 @@ const Login = () => {
     } catch (er) {
       toast.error(er.message);
       console.log(er.message);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -102,7 +107,10 @@ const Login = () => {
               type="submit"
               className="w-full bg-sky-500 text-white py-2 rounded-lg hover:bg-sky-600 transition-colors"
             >
-              Login
+              {loading?
+              <span className="loading loading-dots"></span>
+              :'Login'
+              }
             </button>
           </form>
           <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">

@@ -73,7 +73,6 @@ export function getReceiverSocketId(userId){
 }
 
 
-
 server.listen(process.env.PORT, () => {
   console.log("server is running");
 })

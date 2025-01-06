@@ -82,9 +82,7 @@ export const getTyping=(req,res)=>{
       const {senderId,textLength}=req.body;
       const userId=req.userId;
 
-
       const senderSocketId=getReceiverSocketId(senderId);
-
 
       if(textLength>0){
          io.to(senderSocketId).emit('typing',{
