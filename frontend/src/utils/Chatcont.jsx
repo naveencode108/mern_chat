@@ -63,8 +63,10 @@ export const ChatProvider = ({ children }) => {
       );
       if (res.data.success) {
         setMessages((prev) => [...prev, res.data.message]);
+        return true;
       } else {
         toast.error("something went wrong");
+        return false;
       }
     } catch (er) {
       toast.error(er.message);

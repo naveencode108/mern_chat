@@ -9,7 +9,8 @@ const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePrev, setImagePrev] = useState(null);
   const fileRef = useRef(null);
-  const { sendMessages, selectedUser, } = useChat();
+  const { sendMessages, selectedUser } = useChat();
+  const [loading,setLoading]=useState(false);
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -37,18 +38,25 @@ const MessageInput = () => {
       return;
     }
      
-
     try {
-      await sendMessages({
+      setLoading(true);
+     let res = await sendMessages({
         text: text.trim(),
         image: imagePrev,
       });
+
+      if(res){
+        setLoading(false);
+      }
 
       setText("");
       setImagePrev(null);
       fileRef.current.value = "";
     } catch (er) {
       console.log(er.message);
+    }
+    finally{
+      setLoading(false);
     }
   };
 
@@ -113,7 +121,7 @@ const MessageInput = () => {
         </div>
         <button
           className="btn  btn-circle"
-          disabled={!text.trim() && !imagePrev}
+          disabled={!text.trim() && !imagePrev||loading}
         >
           <IoIosSend className="size-5" />
         </button>
